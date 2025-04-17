@@ -8,6 +8,12 @@ Runs Blockscout locally in Docker containers with [docker-compose](https://githu
 - Docker-compose 2.x.x+
 - Running Ethereum JSON RPC client
 
+## TO Run the Separate Backend And Frontend - Below command is for to run Backend 
+
+```bash
+cd ./docker-compose 
+FRONT_PROXY_PASS=http://host.docker.internal:3000/ docker compose -f external-frontend.yml up -d 
+```
 ## Building Docker containers from source
 
 **Note**: in all below examples, you can use `docker compose` instead of `docker-compose`, if compose v2 plugin is installed in Docker.
