@@ -14,31 +14,28 @@ Runs Blockscout locally in Docker containers with [docker-compose](https://githu
 cd ./docker-compose 
 FRONT_PROXY_PASS=http://host.docker.internal:3000/ docker compose -f external-frontend.yml up -d 
 ```
-## Building Docker containers from source
 
-**Note**: in all below examples, you can use `docker compose` instead of `docker-compose`, if compose v2 plugin is installed in Docker.
+## For logs use command 
 
 ```bash
-cd ./docker-compose
-docker-compose up --build
+docker logs -f user_ops_indexer
+
+docker logs -f stats 
+
+docker compose logs backend > my_backend_logs.txt      -- this command is for full backend and also create .txt file
+
+docker logs -f backend
+
+docker ps -a
+
+
 ```
-
-**Note**: if you don't need to make backend customizations, you can run `docker-compose up` in order to launch from pre-build backend Docker image. This will be much faster.
-
-This command uses `docker-compose.yml` by-default, which builds the backend of the explorer into the Docker image and runs 9 Docker containers:
 
 - Postgres 14.x database, which will be available at port 7432 on the host machine.
 - Redis database of the latest version.
 - Blockscout backend with api at /api path.
 - Nginx proxy to bind backend, frontend and microservices.
 - Blockscout explorer at http://localhost.
-
-and 5 containers for microservices (written in Rust):
-
-- [Stats](https://github.com/blockscout/blockscout-rs/tree/main/stats) service with a separate Postgres 14 DB.
-- [Sol2UML visualizer](https://github.com/blockscout/blockscout-rs/tree/main/visualizer) service.
-- [Sig-provider](https://github.com/blockscout/blockscout-rs/tree/main/sig-provider) service.
-- [User-ops-indexer](https://github.com/blockscout/blockscout-rs/tree/main/user-ops-indexer) service.
 
 **Note for Linux users**: Linux users need to run the local node on http://0.0.0.0/ rather than http://127.0.0.1/
 
