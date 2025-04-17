@@ -30,7 +30,7 @@ services:
       - db:database
     environment:
         ETHEREUM_JSONRPC_VARIANT: 'geth'
-        ETHEREUM_JSONRPC_HTTP_URL: https://tan-testnetrpc1.tan.live/
+        ETHEREUM_JSONRPC_HTTP_URL: http://172.16.16.104:8546/
         INDEXER_DISABLE_INTERNAL_TRANSACTIONS_FETCHER: 'false'
         INDEXER_DISABLE_PENDING_TRANSACTIONS_FETCHER: 'false'
         CHAIN_ID: '4443'
